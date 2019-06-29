@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import ReactMarkdown from "react-markdown"
 
 const IndexPage = ({ data }) => (
   <Layout>
@@ -17,7 +18,7 @@ const IndexPage = ({ data }) => (
             <Link to={`/${ edge.node.id }`}>{ edge.node.title }</Link>
           </h2>
           <Img fluid={ edge.node.image.childImageSharp.fluid } />
-          <p>{ edge.node.content }</p>
+          <ReactMarkdown source={ edge.node.content } />
         </li>) 
       }
     </ul>
