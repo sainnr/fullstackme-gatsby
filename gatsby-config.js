@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `FullStack Me`,
+    description: `Sharing a humble story of perfecting a comprehensive and mindful living`,
+    author: `Vladimir Salin`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -19,7 +19,7 @@ module.exports = {
         apiURL: process.env.DEPLOY_URL
           ? 'https://hidden-ridge-80418.herokuapp.com'
           : 'http://localhost:1337',
-        contentTypes: [ // List of the Content Types you want to be able to request from Gatsby.
+        contentTypes: [
           'article',
           'user'
         ],

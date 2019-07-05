@@ -62,7 +62,7 @@ dfn {
 }
 h1 {
   font-size: 2em;
-  margin: 0.67em 0;
+  margin: 1.5em 0 .5em;
 }
 mark {
   background-color: #ff0;
@@ -238,14 +238,8 @@ h1 {
   line-height: 1.1;
 }
 h2 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.45rem;
+  padding: 0;
+  margin: 1.33em 0 .67em;
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -619,4 +613,13 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+footer {
+  border-top: 1px solid lightgrey;
+  margin-top: 32px;
+  padding-top: 16px;
+}
+img {
+  padding: 16px 0;
 }

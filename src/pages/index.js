@@ -15,7 +15,7 @@ const IndexPage = ({ data }) => (
           <Link to={`/${ edge.node.id }`}>{ edge.node.title }</Link>
         </h2>
         <Img fluid={ edge.node.image.childImageSharp.fluid } />
-        <ReactMarkdown source={ edge.node.content } />
+        <ReactMarkdown source={ edge.node.summary } />
       </Fragment>
     )}
   </Layout>
@@ -37,7 +37,7 @@ export const pageQuery = graphql`
             }
           }
           title
-          content
+          summary
         }
       }
     }

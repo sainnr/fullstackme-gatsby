@@ -5,11 +5,11 @@ import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
 
 const UserTemplate = ({ data }) => <Layout>
-  <h1>{ data.strapiUser.username }</h1>
+  <h1>Articles by { data.strapiUser.displayName }</h1>
   { data.strapiUser.articles.map( article =>
     <Fragment key={ article.id }>
       <h2><Link to={`/Article_${ article.id }`}>{ article.title }</Link></h2>
-      <ReactMarkdown source={ article.content } />
+      <ReactMarkdown source={ article.summary } />
     </Fragment>) }
 </Layout>
 
@@ -20,10 +20,11 @@ export const query = graphql`
     strapiUser(id: { eq: $id }) {
       id
       username
+      displayName
       articles {
         id
         title
-        content
+        summary
       }
     }
   }

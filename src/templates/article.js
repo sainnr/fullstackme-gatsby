@@ -10,11 +10,12 @@ const ArticleTemplate = ({ data }) =>
     <h1>{ data.strapiArticle.title }</h1>
     <p>
       by <Link to={ `/authors/User_${ data.strapiArticle.author.id }`}>
-        { data.strapiArticle.author.username }
+        { data.strapiArticle.author.displayName }
       </Link>
     </p>
     <Img fluid={ data.strapiArticle.image.childImageSharp.fluid } />
     <ReactMarkdown source={ data.strapiArticle.content } />
+    ← <Link to="/">Back to other articles</Link>
   </Layout>
 
 export default ArticleTemplate
@@ -33,7 +34,7 @@ export const query = graphql`
       }
       author {
         id
-        username
+        displayName
       }
     }
   }
