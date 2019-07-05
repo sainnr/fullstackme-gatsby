@@ -1,17 +1,16 @@
-import React from 'react'
+import React, { Fragment } from "react"
+import ReactMarkdown from 'react-markdown'
+
 import { Link, graphql } from 'gatsby'
-import Layout from "../components/layout"
-import ReactMarkdown from "react-markdown"
+import Layout from '../components/layout'
 
 const UserTemplate = ({ data }) => <Layout>
   <h1>{ data.strapiUser.username }</h1>
-  <ul>
-    { data.strapiUser.articles.map( article => 
-      <li key={ article.id }>
-        <h2><Link to={`/Article_${ article.id }`}>{ article.title }</Link></h2>
-        <ReactMarkdown source={ article.content } />
-      </li>) }
-  </ul>
+  { data.strapiUser.articles.map( article =>
+    <Fragment key={ article.id }>
+      <h2><Link to={`/Article_${ article.id }`}>{ article.title }</Link></h2>
+      <ReactMarkdown source={ article.content } />
+    </Fragment>) }
 </Layout>
 
 export default UserTemplate

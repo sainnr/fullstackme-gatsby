@@ -1,28 +1,23 @@
-import React from "react"
-import { Link } from "gatsby"
-import Img from "gatsby-image"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import ReactMarkdown from "react-markdown"
+import React, { Fragment } from "react"
+import ReactMarkdown from 'react-markdown'
+
+import { Link } from 'gatsby'
+import Img from 'gatsby-image'
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <ul>
-      { data.allStrapiArticle.edges.map(edge => 
-        <li key={ edge.node.id }>
-          <h2>
-            <Link to={`/${ edge.node.id }`}>{ edge.node.title }</Link>
-          </h2>
-          <Img fluid={ edge.node.image.childImageSharp.fluid } />
-          <ReactMarkdown source={ edge.node.content } />
-        </li>) 
-      }
-    </ul>
-    <Link to="/page-2/">Go to page 2</Link>
+    { data.allStrapiArticle.edges.map(edge =>
+      <Fragment key={ edge.node.id }>
+        <h2>
+          <Link to={`/${ edge.node.id }`}>{ edge.node.title }</Link>
+        </h2>
+        <Img fluid={ edge.node.image.childImageSharp.fluid } />
+        <ReactMarkdown source={ edge.node.content } />
+      </Fragment>
+    )}
   </Layout>
 )
 
