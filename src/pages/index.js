@@ -12,7 +12,7 @@ const IndexPage = ({ data }) => (
     { data.allStrapiArticle.edges.map(edge =>
       <Fragment key={ edge.node.id }>
         <h2>
-          <Link to={`/${ edge.node.id }`}>{ edge.node.title }</Link>
+          <Link to={`/${ edge.node.slug }`}>{ edge.node.title }</Link>
         </h2>
         <Img fluid={ edge.node.image.childImageSharp.fluid } />
         <ReactMarkdown source={ edge.node.summary } />
@@ -37,6 +37,7 @@ export const pageQuery = graphql`
             }
           }
           title
+          slug
           summary
         }
       }

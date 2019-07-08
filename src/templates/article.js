@@ -9,7 +9,7 @@ const ArticleTemplate = ({ data }) =>
   <Layout>
     <h1>{ data.strapiArticle.title }</h1>
     <p>
-      by <Link to={ `/authors/User_${ data.strapiArticle.author.id }`}>
+      by <Link to={ `/authors/${ data.strapiArticle.author.username }`}>
         { data.strapiArticle.author.displayName }
       </Link>
     </p>
@@ -21,8 +21,8 @@ const ArticleTemplate = ({ data }) =>
 export default ArticleTemplate
 
 export const query = graphql`
-    query ArticleTemplate($id: String!) {
-    strapiArticle(id: { eq: $id }) {
+    query ArticleTemplate($slug: String!) {
+    strapiArticle(slug: { eq: $slug }) {
       title
       content
       image {
@@ -33,7 +33,7 @@ export const query = graphql`
         }
       }
       author {
-        id
+        username
         displayName
       }
     }

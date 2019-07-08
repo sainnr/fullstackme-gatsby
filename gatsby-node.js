@@ -26,7 +26,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       allStrapiArticle {
         edges {
           node {
-            id
+            slug
           }
         }
       }
@@ -34,10 +34,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   `).then(result => 
     result.data.allStrapiArticle.edges.forEach(({ node }) => 
       createPage({
-        path: `/${ node.id }`,
+        path: `/${ node.slug }`,
         component: path.resolve(`src/templates/article.js`),
         context: {
-          id: node.id,
+          slug: node.slug,
         },
       })
     )
@@ -48,7 +48,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       allStrapiUser {
         edges {
           node {
-            id
+            username
           }
         }
       }
@@ -56,10 +56,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   `).then(result => 
     result.data.allStrapiUser.edges.forEach(({ node }) => 
       createPage({
-        path: `/authors/${ node.id }`,
+        path: `/authors/${ node.username }`,
         component: path.resolve(`src/templates/author.js`),
         context: {
-          id: node.id,
+          username: node.username,
         },
       })
     )

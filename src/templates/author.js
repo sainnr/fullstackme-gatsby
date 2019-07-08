@@ -8,7 +8,7 @@ const UserTemplate = ({ data }) => <Layout>
   <h1>Articles by { data.strapiUser.displayName }</h1>
   { data.strapiUser.articles.map( article =>
     <Fragment key={ article.id }>
-      <h2><Link to={`/Article_${ article.id }`}>{ article.title }</Link></h2>
+      <h2><Link to={`/${ article.slug }`}>{ article.title }</Link></h2>
       <ReactMarkdown source={ article.summary } />
     </Fragment>) }
 </Layout>
@@ -16,14 +16,13 @@ const UserTemplate = ({ data }) => <Layout>
 export default UserTemplate
 
 export const query = graphql`
-  query UserTemplate($id: String!) {
-    strapiUser(id: { eq: $id }) {
-      id
-      username
+  query UserTemplate($username: String!) {
+    strapiUser(username: { eq: $username }) {
       displayName
       articles {
         id
         title
+        slug
         summary
       }
     }
