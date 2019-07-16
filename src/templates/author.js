@@ -3,8 +3,10 @@ import ReactMarkdown from 'react-markdown'
 
 import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
+import SEO from '../components/seo'
 
 const UserTemplate = ({ data }) => <Layout>
+  <SEO title={ data.strapiUser.displayName } />
   <h1>Articles by { data.strapiUser.displayName }</h1>
   { data.strapiUser.articles.map( article =>
     <Fragment key={ article.id }>

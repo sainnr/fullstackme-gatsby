@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `FullStack Me`,
     description: `Sharing a humble story of perfecting a comprehensive and mindful living`,
-    author: `Vladimir Salin`,
+    author: `@sainnr`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
