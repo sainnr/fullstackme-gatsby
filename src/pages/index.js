@@ -5,6 +5,7 @@ import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
+import PublishDate from '../components/publishDate'
 
 const IndexPage = ({ data }) => <Layout>
   <SEO title="Home"/>
@@ -13,6 +14,9 @@ const IndexPage = ({ data }) => <Layout>
       <h2>
         <Link to={`/${ edge.node.slug }`}>{ edge.node.title }</Link>
       </h2>
+      <div className="flexWrapper">
+        <PublishDate dateString={ edge.node.createdAt } />
+      </div>
       <Img fluid={ edge.node.image.childImageSharp.fluid }/>
       <ReactMarkdown source={ edge.node.summary }/>
     </Fragment>
@@ -37,6 +41,7 @@ export const pageQuery = graphql`
           title
           slug
           summary
+          createdAt
         }
       }
     }

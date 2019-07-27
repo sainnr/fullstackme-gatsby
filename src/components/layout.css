@@ -623,3 +623,13 @@ footer {
 img {
   padding: 16px 0;
 }
+.flexWrapper {
+  display: flex;
+}
+.flexLeft {
+  flex: 0 0 65%;
+}
+.flexRight {
+  flex: 1;
+  text-align: right;
+}
