@@ -8,7 +8,11 @@ import SEO from '../components/seo'
 import PublishDate from '../components/publishDate'
 
 const ArticleTemplate = ({ data }) => <Layout>
-  <SEO title={ data.strapiArticle.title } />
+  <SEO
+    title={ data.strapiArticle.title }
+    description={ data.strapiArticle.summary }
+    keywords={ data.strapiArticle.keywords }
+  />
   <h1>{ data.strapiArticle.title }</h1>
   <div className="flexWrapper">
     <div className="flexLeft">
@@ -32,6 +36,7 @@ export const query = graphql`
     strapiArticle(slug: { eq: $slug }) {
       title
       content
+      summary
       image {
         childImageSharp {
           fluid(maxWidth: 960) {
@@ -39,6 +44,7 @@ export const query = graphql`
           }
         }
       }
+      keywords
       createdAt
       author {
         username
