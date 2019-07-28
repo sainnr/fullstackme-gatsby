@@ -1,0 +1,12 @@
+{
+  "name": "Strapi GraphQL",
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "dev": {
+        "url": "http://localhost:8000/__graphql",
+        "introspect": true
+      }
+    }
+  }
+}
