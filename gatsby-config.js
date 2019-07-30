@@ -31,7 +31,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `fullstackme-blog`,
+        name: `fullstackme-gatsby`,
         short_name: `fullstackme`,
         start_url: `/`,
         display: `minimal-ui`,
