@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `FullStack Me`,
-    description: `Sharing a humble story of perfecting a comprehensive and mindful living`,
+    description: `Curiosity driven journal of perfecting a comprehensive and mindful living`,
     author: `@sainnr`,
   },
   plugins: [
@@ -51,7 +51,8 @@ module.exports = {
           families: ['Caveat Brush']
         }
       }
-    }
+    },
+    `gatsby-plugin-typescript`
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
