@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { FC } from 'react'
 import ReactMarkdown from 'react-markdown'
 
-import Layout from '../components/layout'
+import { Layout } from '../components/layout'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
-import SEO from '../components/seo'
-import PublishDate from '../components/publishDate'
+import { SEO } from '../components/seo'
+import { PublishDate } from '../components/publishDate'
 
-const ArticleTemplate = ({ data }) => <Layout>
+const ArticleTemplate: FC<{ data: any }> = ({ data }) => <Layout>
   <SEO
     title={ data.strapiArticle.title }
     description={ data.strapiArticle.summary }

@@ -1,3 +1,5 @@
+import React, { FC } from 'react'
+
 const monthNames = [
   "January", "February", "March",
   "April", "May", "June", "July",
@@ -5,13 +7,11 @@ const monthNames = [
   "November", "December"
 ]
 
-const PublishDate = ({ dateString }) => {
+export const PublishDate: FC<{ dateString: string }> = ({ dateString }) => {
   const date = new Date(dateString)
   const day = date.getDate()
   const monthIndex = date.getMonth()
   const year = date.getFullYear()
 
-  return day + ' ' + monthNames[monthIndex] + ' ' + year
+  return <>{ day + ' ' + monthNames[monthIndex] + ' ' + year }</>
 }
-
-export default PublishDate

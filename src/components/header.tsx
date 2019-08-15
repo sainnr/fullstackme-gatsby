@@ -1,12 +1,15 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
-import StyledBackgroundSection from "./bgImage"
+import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
+import React, { FC } from 'react'
+import { BgSection } from './bgImage'
 
-const Header = ({ siteTitle, subtitle }) => <header style={{
+export const Header: FC<{
+  siteTitle?: string,
+  subtitle?: string
+}> = ({ siteTitle, subtitle }) => <header style={{
   marginBottom: `1.45rem`,
 }}>
-  <StyledBackgroundSection className="">
+  <BgSection>
     <div style={{
       textAlign: `center`,
       margin: `0 auto`,
@@ -29,7 +32,7 @@ const Header = ({ siteTitle, subtitle }) => <header style={{
       }}>{ subtitle }</h4>
     </div>
 
-  </StyledBackgroundSection>
+  </BgSection>
 </header>
 
 Header.propTypes = {
@@ -41,5 +44,3 @@ Header.defaultProps = {
   siteTitle: ``,
   subtitle: ``,
 }
-
-export default Header

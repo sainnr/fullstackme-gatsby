@@ -2,8 +2,8 @@ import React, { FC, Fragment } from 'react'
 import ReactMarkdown from 'react-markdown'
 
 import { Link, graphql } from 'gatsby'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import { Layout } from '../components/layout'
+import { SEO } from '../components/seo'
 
 const UserTemplate: FC<{ data: any }> = ({ data }) => <Layout>
   <SEO title={ data.strapiUser.displayName } />

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 import styled from 'styled-components'
 
 import BackgroundImage from 'gatsby-background-image'
 
-const BackgroundSection = ({ children, className }) =>
+const BackgroundSection: FC<{ className?: string }> = ({ children, className }) =>
   <StaticQuery
     query={ query }
     render={ data => {
@@ -29,9 +29,7 @@ const query = graphql`
   }
 `
 
-const StyledBackgroundSection = styled(BackgroundSection)`
+export const BgSection = styled(BackgroundSection)`
   width: 100%;
   background-position: center right;
 `
-
-export default StyledBackgroundSection
