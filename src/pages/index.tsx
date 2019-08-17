@@ -1,15 +1,18 @@
 import React, { FC, Fragment } from 'react'
 import ReactMarkdown from 'react-markdown'
-
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
-import { Layout } from '../components/layout'
-import { SEO } from '../components/seo'
-import { PublishDate } from '../components/publishDate'
 
-const IndexPage: FC<{ data: any }> = ({ data }) => <Layout>
+import { Layout, SEO, PublishDate } from '../components'
+import { IArticle } from 'types'
+
+interface IQueryData {
+  allStrapiArticle: { edges: Array<{ node: IArticle }> }
+}
+
+const IndexPage: FC<{ data: IQueryData }> = ({ data }) => <Layout>
   <SEO title="Home"/>
-  { data.allStrapiArticle.edges.map((edge: any) =>
+  { data.allStrapiArticle.edges.map(edge =>
     <Fragment key={ edge.node.id }>
       <h2>
         <Link to={`/${ edge.node.slug }`}>{ edge.node.title }</Link>

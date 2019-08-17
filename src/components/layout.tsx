@@ -1,12 +1,4 @@
-/**
- * Layout component that queries for data
- * with Gatsby's StaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/static-query/
- */
-
 import React, { FC } from 'react'
-import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 
 import { Header } from './header'
@@ -36,13 +28,9 @@ export const Layout: FC = ({ children }) => (
           paddingTop: 0,
         }}>
           <main>{ children }</main>
-          <footer>© {new Date().getFullYear()}, Vladimir Salin</footer>
+          <footer>© {new Date().getFullYear()}, FullStack Me Project</footer>
         </div>
       </>
     )}
   />
 )
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}

@@ -1,13 +1,16 @@
 import React, { FC } from 'react'
 import ReactMarkdown from 'react-markdown'
-
-import { Layout } from '../components/layout'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
-import { SEO } from '../components/seo'
-import { PublishDate } from '../components/publishDate'
 
-const ArticleTemplate: FC<{ data: any }> = ({ data }) => <Layout>
+import { Layout, SEO, PublishDate } from '../components'
+import { IArticle } from 'types'
+
+interface IQueryData {
+  strapiArticle: IArticle
+}
+
+const ArticleTemplate: FC<{ data: IQueryData }> = ({ data }) => <Layout>
   <SEO
     title={ data.strapiArticle.title }
     description={ data.strapiArticle.summary }

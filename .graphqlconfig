@@ -1,6 +1,6 @@
 {
   "name": "Strapi GraphQL",
-  "schemaPath": "schema.graphql",
+  "schemaPath": "./src/schema.graphql",
   "extensions": {
     "endpoints": {
       "dev": {

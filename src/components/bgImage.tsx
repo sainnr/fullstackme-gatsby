@@ -29,7 +29,7 @@ const query = graphql`
   }
 `
 
-export const BgSection = styled(BackgroundSection)`
+export const BgImage = styled(BackgroundSection)`
   width: 100%;
   background-position: center right;
 `

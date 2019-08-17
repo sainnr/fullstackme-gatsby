@@ -1,12 +1,13 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "fullstackme-gatsby",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "A fast & furious frontend for FullStackMe project, works with Strapi",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Vladimir Salin <salinvs@gmail.com>",
   "dependencies": {
     "gatsby": "^2.9.4",
     "gatsby-background-image": "^0.8.2",
+    "gatsby-cli": "^2.7.31",
     "gatsby-image": "^2.1.4",
     "gatsby-plugin-google-analytics": "^2.1.1",
     "gatsby-plugin-manifest": "^2.1.1",
@@ -20,12 +21,12 @@
     "gatsby-source-strapi": "0.0.8",
     "gatsby-transformer-sharp": "^2.1.21",
     "intersection-observer": "^0.7.0",
-    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-markdown": "^4.1.0",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "update": "^0.7.4"
   },
   "devDependencies": {
     "@types/react": "^16.9.1",
@@ -56,7 +57,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/sainnr/fullstackme-gatsby"
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"

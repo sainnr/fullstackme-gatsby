@@ -1,14 +1,22 @@
 import React, { FC, Fragment } from 'react'
 import ReactMarkdown from 'react-markdown'
-
 import { Link, graphql } from 'gatsby'
-import { Layout } from '../components/layout'
-import { SEO } from '../components/seo'
 
-const UserTemplate: FC<{ data: any }> = ({ data }) => <Layout>
+import { Layout, SEO } from '../components'
+import { IArticle, IAuthor } from 'types'
+
+interface IQueryData {
+  strapiUser: IAuthorArticles
+}
+
+interface IAuthorArticles extends IAuthor {
+  articles: Array<IArticle>
+}
+
+const UserTemplate: FC<{ data: IQueryData }> = ({ data }) => <Layout>
   <SEO title={ data.strapiUser.displayName } />
   <h1>Articles by { data.strapiUser.displayName }</h1>
-  { data.strapiUser.articles.map( (article: any) =>
+  { data.strapiUser.articles.map(article =>
     <Fragment key={ article.id }>
       <h2><Link to={`/${ article.slug }`}>{ article.title }</Link></h2>
       <ReactMarkdown source={ article.summary } />
