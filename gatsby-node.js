@@ -27,6 +27,7 @@ exports.createPages = ({ actions, graphql }) => {
         edges {
           node {
             slug
+            author { username }
           }
         }
       }
@@ -38,6 +39,7 @@ exports.createPages = ({ actions, graphql }) => {
         component: path.resolve(`src/templates/article.tsx`),
         context: {
           slug: node.slug,
+          user: node.author.username,
         },
       })
     )

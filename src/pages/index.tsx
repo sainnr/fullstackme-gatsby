@@ -17,7 +17,7 @@ const IndexPage: FC<{ data: IQueryData }> = ({ data }) => <Layout>
       <h2>
         <Link to={`/${ edge.node.slug }`}>{ edge.node.title }</Link>
       </h2>
-      <div className="flexWrapper">
+      <div className="flex-wrapper">
         <PublishDate dateString={ edge.node.createdAt } />
       </div>
       <Img fluid={ edge.node.image.childImageSharp.fluid }/>

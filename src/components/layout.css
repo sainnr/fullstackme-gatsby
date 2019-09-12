@@ -620,16 +620,16 @@ footer {
   margin-top: 32px;
   padding-top: 16px;
 }
-img {
-  padding: 16px 0;
-}
-.flexWrapper {
+.flex-wrapper {
   display: flex;
 }
-.flexLeft {
+.flex-left {
   flex: 0 0 65%;
 }
-.flexRight {
+.flex-right {
   flex: 1;
   text-align: right;
+}
+.article-cover {
+  margin: 16px 0;
 }
