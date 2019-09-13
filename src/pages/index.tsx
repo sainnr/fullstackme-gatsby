@@ -20,7 +20,8 @@ const IndexPage: FC<{ data: IQueryData }> = ({ data }) => <Layout>
       <div className="flex-wrapper">
         <PublishDate dateString={ edge.node.createdAt } />
       </div>
-      <Img fluid={ edge.node.image.childImageSharp.fluid }/>
+      <Img className="article-cover"
+           fluid={ edge.node.image.childImageSharp.fluid }/>
       <ReactMarkdown source={ edge.node.summary }/>
     </Fragment>
   ) }

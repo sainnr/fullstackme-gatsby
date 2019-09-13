@@ -5,6 +5,7 @@ import Img from 'gatsby-image'
 
 import { Layout, SEO, PublishDate } from '../components'
 import { IArticle, IAuthor } from 'types'
+import { TagView } from '../components/tag'
 
 interface IQueryData {
   strapiArticle: IArticle
@@ -38,10 +39,8 @@ const ArticleTemplate: FC<{ data: IQueryData }> = ({ data }) => {
     <Img className="article-cover"
          fluid={ article.image.childImageSharp.fluid } />
     <ReactMarkdown source={ article.content } />
-    <div className={ "article-tags" } >
-      Tags: { article.tags.map(tag =>
-        <Link to={`/tags/${ tag.name }`}>{ tag.name }</Link>)
-      }
+    <div className="article-tags" >
+      Tags: { article.tags.map(tag => <TagView tag={ tag } />) }
     </div>
     ← <Link to="/">Back to other articles</Link>
   </Layout>

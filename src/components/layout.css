@@ -633,3 +633,9 @@ footer {
 .article-cover {
   margin: 16px 0;
 }
+.article-tags {
+  margin: 8px 0;
+}
+.tag-element {
+  margin-right: 4px;
+}
