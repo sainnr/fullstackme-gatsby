@@ -1,4 +1,5 @@
 import { IAuthor } from './IAuthor'
+import { ITag } from './ITag'
 
 export interface IArticle {
   id: string
@@ -10,4 +11,5 @@ export interface IArticle {
   createdAt: string
   content: string
   slug: string
+  tags: ITag[]
 }

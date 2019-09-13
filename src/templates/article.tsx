@@ -12,29 +12,37 @@ interface IQueryData {
 }
 
 const ArticleTemplate: FC<{ data: IQueryData }> = ({ data }) => {
+  const article = data.strapiArticle
+  const author = data.strapiUser
+
   return <Layout>
     <SEO
-      title={ data.strapiArticle.title }
-      description={ data.strapiArticle.summary }
-      keywords={ data.strapiArticle.keywords }
+      title={ article.title }
+      description={ article.summary }
+      keywords={ article.keywords }
     />
-    <h1>{ data.strapiArticle.title }</h1>
+    <h1>{ article.title }</h1>
     <div className="flex-wrapper">
       <div className="flex-left">
         By <Img
           alt="Vladimir Salin"
-          fixed={ data.strapiUser.photo.childImageSharp.fixed }
-        /> <Link to={`/authors/${ data.strapiArticle.author.username }`}>
-          { data.strapiArticle.author.displayName }
+          fixed={ author.photo.childImageSharp.fixed }
+        /> <Link to={`/authors/${ article.author.username }`}>
+          { article.author.displayName }
         </Link>
       </div>
       <div className="flex-right">
-        <PublishDate dateString={ data.strapiArticle.createdAt } />
+        <PublishDate dateString={ article.createdAt } />
       </div>
     </div>
     <Img className="article-cover"
-         fluid={ data.strapiArticle.image.childImageSharp.fluid } />
-    <ReactMarkdown source={ data.strapiArticle.content } />
+         fluid={ article.image.childImageSharp.fluid } />
+    <ReactMarkdown source={ article.content } />
+    <div className={ "article-tags" } >
+      Tags: { article.tags.map(tag =>
+        <Link to={`/tags/${ tag.name }`}>{ tag.name }</Link>)
+      }
+    </div>
     ← <Link to="/">Back to other articles</Link>
   </Layout>
 }
@@ -59,6 +67,9 @@ export const query = graphql`
       author {
         username
         displayName
+      }
+      tags {
+        name
       }
     }
     strapiUser(username: { eq: $user }) {
