@@ -67,8 +67,31 @@ exports.createPages = ({ actions, graphql }) => {
     )
   )
     
+  const getTags = makeRequest(graphql, `
+    {
+      allStrapiTag {
+        edges {
+          node {
+            name
+          }
+        }
+      }
+    }
+  `).then(result =>
+    result.data.allStrapiTag.edges.forEach(({ node }) =>
+      createPage({
+        path: `/tags/${ node.name }`,
+        component: path.resolve(`src/templates/tag.tsx`),
+        context: {
+          tag: node.name,
+        },
+      })
+    )
+  )
+
   return Promise.all([
     getArticles,
     getAuthors,
+    getTags,
   ])
 }
