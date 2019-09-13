@@ -21,7 +21,8 @@ module.exports = {
           : 'http://localhost:1337',
         contentTypes: [
           'article',
-          'user'
+          'user',
+          'tag',
         ],
         queryLimit: 1000,
       },

@@ -463,6 +463,7 @@ type Query {
   allSitePage(filter: SitePageFilterInput, limit: Int, skip: Int, sort: SitePageSortInput): SitePageConnection
   allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: SitePluginSortInput): SitePluginConnection
   allStrapiArticle(filter: StrapiArticleFilterInput, limit: Int, skip: Int, sort: StrapiArticleSortInput): StrapiArticleConnection
+  allStrapiTag(filter: StrapiTagFilterInput, limit: Int, skip: Int, sort: StrapiTagSortInput): StrapiTagConnection
   allStrapiUser(filter: StrapiUserFilterInput, limit: Int, skip: Int, sort: StrapiUserSortInput): StrapiUserConnection
   directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: IntQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
   file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: IntQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
@@ -470,7 +471,8 @@ type Query {
   site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
   sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, context: SitePageContextFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
   sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
-  strapiArticle(author: StrapiArticleAuthorFilterInput, children: NodeFilterListInput, content: StringQueryOperatorInput, createdAt: DateQueryOperatorInput, id: StringQueryOperatorInput, image: FileFilterInput, internal: InternalFilterInput, keywords: StringQueryOperatorInput, parent: NodeFilterInput, slug: StringQueryOperatorInput, strapiId: StringQueryOperatorInput, summary: StringQueryOperatorInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): StrapiArticle
+  strapiArticle(author: StrapiArticleAuthorFilterInput, children: NodeFilterListInput, content: StringQueryOperatorInput, createdAt: DateQueryOperatorInput, id: StringQueryOperatorInput, image: FileFilterInput, internal: InternalFilterInput, keywords: StringQueryOperatorInput, parent: NodeFilterInput, slug: StringQueryOperatorInput, strapiId: StringQueryOperatorInput, summary: StringQueryOperatorInput, tags: StrapiArticleTagsFilterListInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): StrapiArticle
+  strapiTag(articles: StrapiTagArticlesFilterListInput, children: NodeFilterListInput, createdAt: DateQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, parent: NodeFilterInput, strapiId: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): StrapiTag
   strapiUser(articles: StrapiUserArticlesFilterListInput, blocked: BooleanQueryOperatorInput, children: NodeFilterListInput, confirmed: BooleanQueryOperatorInput, displayName: StringQueryOperatorInput, email: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, photo: FileFilterInput, provider: StringQueryOperatorInput, role: StrapiUserRoleFilterInput, strapiId: StringQueryOperatorInput, username: StringQueryOperatorInput): StrapiUser
 }
 
@@ -547,6 +549,7 @@ type SitePageConnection {
 
 type SitePageContext {
   slug: String
+  user: String
   username: String
 }
 
@@ -679,6 +682,7 @@ type StrapiArticle implements Node {
   slug: String
   strapiId: String
   summary: String
+  tags: [StrapiArticleTags]
   title: String
   updatedAt(
     #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
@@ -758,6 +762,117 @@ type StrapiArticleGroupConnection {
   field: String!
   fieldValue: String
   nodes: [StrapiArticle!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type StrapiArticleTags {
+  articles: [String]
+  createdAt(
+    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    difference: String,
+    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String,
+    #Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean,
+    #Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  id: String
+  name: String
+  updatedAt(
+    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    difference: String,
+    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String,
+    #Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean,
+    #Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+}
+
+type StrapiTag implements Node {
+  articles: [StrapiTagArticles]
+  children: [Node!]!
+  createdAt(
+    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    difference: String,
+    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String,
+    #Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean,
+    #Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  id: ID!
+  internal: Internal!
+  name: String
+  parent: Node
+  strapiId: String
+  updatedAt(
+    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    difference: String,
+    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String,
+    #Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean,
+    #Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+}
+
+type StrapiTagArticles {
+  author: String
+  content: String
+  createdAt(
+    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    difference: String,
+    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String,
+    #Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean,
+    #Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  id: String
+  image: File
+  keywords: String
+  slug: String
+  summary: String
+  title: String
+  updatedAt(
+    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    difference: String,
+    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String,
+    #Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean,
+    #Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+}
+
+type StrapiTagConnection {
+  distinct(field: StrapiTagFieldsEnum!): [String!]!
+  edges: [StrapiTagEdge!]!
+  group(field: StrapiTagFieldsEnum!, limit: Int, skip: Int): [StrapiTagGroupConnection!]!
+  nodes: [StrapiTag!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type StrapiTagEdge {
+  next: StrapiTag
+  node: StrapiTag!
+  previous: StrapiTag
+}
+
+type StrapiTagGroupConnection {
+  edges: [StrapiTagEdge!]!
+  field: String!
+  fieldValue: String
+  nodes: [StrapiTag!]!
   pageInfo: PageInfo!
   totalCount: Int!
 }
@@ -1405,6 +1520,7 @@ enum SitePageFieldsEnum {
   componentChunkName
   componentPath
   context___slug
+  context___user
   context___username
   id
   internalComponentName
@@ -1845,7 +1961,164 @@ enum StrapiArticleFieldsEnum {
   slug
   strapiId
   summary
+  tags
+  tags___articles
+  tags___createdAt
+  tags___id
+  tags___name
+  tags___updatedAt
   title
+  updatedAt
+}
+
+enum StrapiTagFieldsEnum {
+  articles
+  articles___author
+  articles___content
+  articles___createdAt
+  articles___id
+  articles___image___absolutePath
+  articles___image___accessTime
+  articles___image___atime
+  articles___image___atimeMs
+  articles___image___base
+  articles___image___birthTime
+  articles___image___birthtime
+  articles___image___birthtimeMs
+  articles___image___blksize
+  articles___image___blocks
+  articles___image___changeTime
+  articles___image___children
+  articles___image___children___children
+  articles___image___children___id
+  articles___image___ctime
+  articles___image___ctimeMs
+  articles___image___dev
+  articles___image___dir
+  articles___image___ext
+  articles___image___extension
+  articles___image___gid
+  articles___image___id
+  articles___image___ino
+  articles___image___internal___content
+  articles___image___internal___contentDigest
+  articles___image___internal___description
+  articles___image___internal___fieldOwners
+  articles___image___internal___ignoreType
+  articles___image___internal___mediaType
+  articles___image___internal___owner
+  articles___image___internal___type
+  articles___image___mode
+  articles___image___modifiedTime
+  articles___image___mtime
+  articles___image___mtimeMs
+  articles___image___name
+  articles___image___nlink
+  articles___image___parent___children
+  articles___image___parent___id
+  articles___image___prettySize
+  articles___image___publicURL
+  articles___image___rdev
+  articles___image___relativeDirectory
+  articles___image___relativePath
+  articles___image___root
+  articles___image___size
+  articles___image___sourceInstanceName
+  articles___image___uid
+  articles___keywords
+  articles___slug
+  articles___summary
+  articles___title
+  articles___updatedAt
+  children
+  children___children
+  children___children___children
+  children___children___children___children
+  children___children___children___id
+  children___children___id
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___children___parent___children
+  children___children___parent___id
+  children___id
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  children___parent___children
+  children___parent___children___children
+  children___parent___children___id
+  children___parent___id
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___parent___parent___children
+  children___parent___parent___id
+  createdAt
+  id
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  name
+  parent___children
+  parent___children___children
+  parent___children___children___children
+  parent___children___children___id
+  parent___children___id
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___children___parent___children
+  parent___children___parent___id
+  parent___id
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  parent___parent___children
+  parent___parent___children___children
+  parent___parent___children___id
+  parent___parent___id
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___parent___parent___children
+  parent___parent___parent___id
+  strapiId
   updatedAt
 }
 
@@ -2354,6 +2627,7 @@ input SiteFilterInput {
 
 input SitePageContextFilterInput {
   slug: StringQueryOperatorInput
+  user: StringQueryOperatorInput
   username: StringQueryOperatorInput
 }
 
@@ -2509,12 +2783,59 @@ input StrapiArticleFilterInput {
   slug: StringQueryOperatorInput
   strapiId: StringQueryOperatorInput
   summary: StringQueryOperatorInput
+  tags: StrapiArticleTagsFilterListInput
   title: StringQueryOperatorInput
   updatedAt: DateQueryOperatorInput
 }
 
 input StrapiArticleSortInput {
   fields: [StrapiArticleFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+input StrapiArticleTagsFilterInput {
+  articles: StringQueryOperatorInput
+  createdAt: DateQueryOperatorInput
+  id: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  updatedAt: DateQueryOperatorInput
+}
+
+input StrapiArticleTagsFilterListInput {
+  elemMatch: StrapiArticleTagsFilterInput
+}
+
+input StrapiTagArticlesFilterInput {
+  author: StringQueryOperatorInput
+  content: StringQueryOperatorInput
+  createdAt: DateQueryOperatorInput
+  id: StringQueryOperatorInput
+  image: FileFilterInput
+  keywords: StringQueryOperatorInput
+  slug: StringQueryOperatorInput
+  summary: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  updatedAt: DateQueryOperatorInput
+}
+
+input StrapiTagArticlesFilterListInput {
+  elemMatch: StrapiTagArticlesFilterInput
+}
+
+input StrapiTagFilterInput {
+  articles: StrapiTagArticlesFilterListInput
+  children: NodeFilterListInput
+  createdAt: DateQueryOperatorInput
+  id: StringQueryOperatorInput
+  internal: InternalFilterInput
+  name: StringQueryOperatorInput
+  parent: NodeFilterInput
+  strapiId: StringQueryOperatorInput
+  updatedAt: DateQueryOperatorInput
+}
+
+input StrapiTagSortInput {
+  fields: [StrapiTagFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 
