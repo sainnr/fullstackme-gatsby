@@ -7,7 +7,7 @@
   "dependencies": {
     "gatsby": "^2.9.4",
     "gatsby-background-image": "^0.8.2",
-    "gatsby-cli": "^2.7.31",
+    "gatsby-cli": "^2.7.53",
     "gatsby-image": "^2.1.4",
     "gatsby-plugin-google-analytics": "^2.1.1",
     "gatsby-plugin-manifest": "^2.1.1",
@@ -19,6 +19,7 @@
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.0.39",
     "gatsby-source-strapi": "0.0.8",
+    "gatsby-source-wordpress": "^3.1.38",
     "gatsby-transformer-sharp": "^2.1.21",
     "intersection-observer": "^0.7.0",
     "react": "^16.8.6",
