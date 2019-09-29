@@ -7,22 +7,22 @@ import { Layout, SEO, PublishDate } from '../components'
 import { IArticle } from 'types'
 
 interface IQueryData {
-  allStrapiArticle: { edges: Array<{ node: IArticle }> }
+  allWordpressPost: { edges: Array<{ node: IArticle }> }
 }
 
 const IndexPage: FC<{ data: IQueryData }> = ({ data }) => <Layout>
   <SEO title="Home"/>
-  { data.allStrapiArticle.edges.map(edge =>
+  { data.allWordpressPost.edges.map(edge =>
     <Fragment key={ edge.node.id }>
       <h2>
         <Link to={`/${ edge.node.slug }`}>{ edge.node.title }</Link>
       </h2>
       <div className="flex-wrapper">
-        <PublishDate dateString={ edge.node.createdAt } />
+        <PublishDate dateString={ edge.node.date } />
       </div>
       <Img className="article-cover"
-           fluid={ edge.node.image.childImageSharp.fluid }/>
-      <ReactMarkdown source={ edge.node.summary }/>
+           fluid={ edge.node.featured_media.localFile.childImageSharp.fluid }/>
+      <ReactMarkdown source={ edge.node.excerpt }/>
     </Fragment>
   ) }
 </Layout>
@@ -31,21 +31,23 @@ export default IndexPage
 
 export const pageQuery = graphql`  
   query IndexQuery {
-    allStrapiArticle {
+    allWordpressPost {
       edges {
         node {
           id
-          image {
-            childImageSharp {
-              fluid(maxWidth: 960) {
-                ...GatsbyImageSharpFluid
+          featured_media {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 960) {
+                  ...GatsbyImageSharpFluid
+                }
               }
             }
           }
           title
           slug
-          summary
-          createdAt
+          excerpt
+          date
         }
       }
     }

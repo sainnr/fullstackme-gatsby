@@ -1,5 +1,5 @@
 export interface IAuthor {
-  displayName: string
-  username: string
-  photo: any
+  name: string
+  slug: string
+  avatar_urls: { wordpress_96: string }
 }

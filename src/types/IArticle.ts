@@ -4,11 +4,11 @@ import { ITag } from './ITag'
 export interface IArticle {
   id: string
   title: string
-  summary: string
+  excerpt: string
   keywords: string
   author: IAuthor
-  image: any
-  createdAt: string
+  featured_media: any
+  date: string
   content: string
   slug: string
   tags: ITag[]

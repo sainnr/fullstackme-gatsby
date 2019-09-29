@@ -6,20 +6,20 @@ import { Layout, SEO } from '../components'
 import { IArticle, IAuthor } from 'types'
 
 interface IQueryData {
-  strapiUser: IAuthorArticles
+  wordpressWpUsers: IAuthorArticles
 }
 
 interface IAuthorArticles extends IAuthor {
-  articles: Array<IArticle>
+  authored_wordpress__POST: Array<IArticle>
 }
 
 const UserTemplate: FC<{ data: IQueryData }> = ({ data }) => <Layout>
-  <SEO title={ data.strapiUser.displayName } />
-  <h1>Articles by { data.strapiUser.displayName }</h1>
-  { data.strapiUser.articles.map(article =>
+  <SEO title={ data.wordpressWpUsers.name } />
+  <h1>Articles by { data.wordpressWpUsers.name }</h1>
+  { data.wordpressWpUsers.authored_wordpress__POST.map(article =>
     <Fragment key={ article.id }>
       <h2><Link to={`/${ article.slug }`}>{ article.title }</Link></h2>
-      <ReactMarkdown source={ article.summary } />
+      <ReactMarkdown source={ article.excerpt } />
     </Fragment>) }
 </Layout>
 
@@ -27,13 +27,13 @@ export default UserTemplate
 
 export const query = graphql`
   query UserTemplate($username: String!) {
-    strapiUser(username: { eq: $username }) {
-      displayName
-      articles {
+    wordpressWpUsers(slug: { eq: $username }) {
+      name
+      authored_wordpress__POST {
         id
         title
         slug
-        summary
+        excerpt
       }
     }
   }

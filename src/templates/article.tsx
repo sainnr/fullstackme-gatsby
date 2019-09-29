@@ -4,40 +4,39 @@ import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 
 import { Layout, SEO, PublishDate } from '../components'
-import { IArticle, IAuthor } from 'types'
+import { IArticle } from 'types'
 import { TagView } from '../components/tag'
 
 interface IQueryData {
-  strapiArticle: IArticle
-  strapiUser: IAuthor
+  wordpressPost: IArticle
 }
 
 const ArticleTemplate: FC<{ data: IQueryData }> = ({ data }) => {
-  const article = data.strapiArticle
-  const author = data.strapiUser
+  const article = data.wordpressPost
+  const author = article.author
 
   return <Layout>
     <SEO
       title={ article.title }
-      description={ article.summary }
+      description={ article.excerpt }
       keywords={ article.keywords }
     />
     <h1>{ article.title }</h1>
     <div className="flex-wrapper">
       <div className="flex-left">
-        By <Img
+        By <img
           alt="Vladimir Salin"
-          fixed={ author.photo.childImageSharp.fixed }
-        /> <Link to={`/authors/${ article.author.username }`}>
-          { article.author.displayName }
+          src={ author.avatar_urls.wordpress_96 }
+        /> <Link to={`/authors/${ author.slug }`}>
+          { author.name }
         </Link>
       </div>
       <div className="flex-right">
-        <PublishDate dateString={ article.createdAt } />
+        <PublishDate dateString={ article.date } />
       </div>
     </div>
     <Img className="article-cover"
-         fluid={ article.image.childImageSharp.fluid } />
+         fluid={ article.featured_media.localFile.childImageSharp.fluid } />
     <ReactMarkdown source={ article.content } />
     <div className="article-tags" >
       Tags: { article.tags.map(tag => <TagView tag={ tag } />) }
@@ -48,38 +47,32 @@ const ArticleTemplate: FC<{ data: IQueryData }> = ({ data }) => {
 
 export default ArticleTemplate
 
-export const query = graphql`    
-  query ArticleTemplate($slug: String!, $user: String!) {
-    strapiArticle(slug: { eq: $slug }) {
+export const query = graphql`
+  query ArticleTemplate($slug: String!) {
+    wordpressPost(slug: { eq: $slug }) {
       title
       content
-      summary
-      image {
-        childImageSharp {
-          fluid(maxWidth: 960) {
-            ...GatsbyImageSharpFluid
+      excerpt
+      featured_media {
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 960) {
+              ...GatsbyImageSharpFluid
+            }
           }
         }
       }
-      keywords
-      createdAt
+#      keywords
+      date
       author {
-        username
-        displayName
+        name
+        slug
+        avatar_urls {
+          wordpress_96
+        }
       }
       tags {
         name
-      }
-    }
-    strapiUser(username: { eq: $user }) {
-      username
-      displayName
-      photo {
-        childImageSharp {
-          fixed(width: 18, height: 18) {
-            ...GatsbyImageSharpFixed
-          }
-        }
       }
     }
   }

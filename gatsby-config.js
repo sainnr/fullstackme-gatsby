@@ -14,6 +14,15 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-wordpress',
+      options: {
+        baseUrl: 'admin.fullstackme.co.uk',
+        protocol: 'https',
+        hostingWPCOM: false,
+        verboseOutput: false,
+      },
+    },
+    {
       resolve: 'gatsby-source-strapi',
       options: {
         apiURL: process.env.DEPLOY_URL

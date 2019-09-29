@@ -23,23 +23,22 @@ exports.createPages = ({ actions, graphql }) => {
   
   const getArticles = makeRequest(graphql, `
     {
-      allStrapiArticle {
+      allWordpressPost {
         edges {
           node {
             slug
-            author { username }
+            author { name }
           }
         }
       }
     }
   `).then(result => 
-    result.data.allStrapiArticle.edges.forEach(({ node }) => 
+    result.data.allWordpressPost.edges.forEach(({ node }) =>
       createPage({
         path: `/${ node.slug }`,
         component: path.resolve(`src/templates/article.tsx`),
         context: {
           slug: node.slug,
-          user: node.author.username,
         },
       })
     )
@@ -47,21 +46,19 @@ exports.createPages = ({ actions, graphql }) => {
   
   const getAuthors = makeRequest(graphql, `
     {
-      allStrapiUser {
+      allWordpressWpUsers {
         edges {
-          node {
-            username
-          }
+          node { slug }
         }
       }
     }
   `).then(result => 
-    result.data.allStrapiUser.edges.forEach(({ node }) => 
+    result.data.allWordpressWpUsers.edges.forEach(({ node }) =>
       createPage({
-        path: `/authors/${ node.username }`,
+        path: `/authors/${ node.slug }`,
         component: path.resolve(`src/templates/author.tsx`),
         context: {
-          username: node.username,
+          username: node.slug,
         },
       })
     )
@@ -69,16 +66,14 @@ exports.createPages = ({ actions, graphql }) => {
     
   const getTags = makeRequest(graphql, `
     {
-      allStrapiTag {
+      allWordpressTag {
         edges {
-          node {
-            name
-          }
+          node { name }
         }
       }
     }
   `).then(result =>
-    result.data.allStrapiTag.edges.forEach(({ node }) =>
+    result.data.allWordpressTag.edges.forEach(({ node }) =>
       createPage({
         path: `/tags/${ node.name }`,
         component: path.resolve(`src/templates/tag.tsx`),
