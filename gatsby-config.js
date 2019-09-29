@@ -22,20 +22,6 @@ module.exports = {
         verboseOutput: false,
       },
     },
-    {
-      resolve: 'gatsby-source-strapi',
-      options: {
-        apiURL: process.env.DEPLOY_URL
-          ? 'https://hidden-ridge-80418.herokuapp.com'
-          : 'http://localhost:1337',
-        contentTypes: [
-          'article',
-          'user',
-          'tag',
-        ],
-        queryLimit: 1000,
-      },
-    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
