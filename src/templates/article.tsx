@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
-import ReactMarkdown from 'react-markdown'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 
 import { Layout, SEO, PublishDate } from '../components'
 import { IArticle } from 'types'
 import { TagView } from '../components/tag'
+import { WpContent } from '../components/wpContent'
 
 interface IQueryData {
   wordpressPost: IArticle
@@ -25,6 +25,7 @@ const ArticleTemplate: FC<{ data: IQueryData }> = ({ data }) => {
     <div className="flex-wrapper">
       <div className="flex-left">
         By <img
+          className="article-author-pic"
           alt="Vladimir Salin"
           src={ author.avatar_urls.wordpress_96 }
         /> <Link to={`/authors/${ author.slug }`}>
@@ -37,7 +38,7 @@ const ArticleTemplate: FC<{ data: IQueryData }> = ({ data }) => {
     </div>
     <Img className="article-cover"
          fluid={ article.featured_media.localFile.childImageSharp.fluid } />
-    <ReactMarkdown source={ article.content } />
+    <WpContent htmlString={ article.content } />
     <div className="article-tags" >
       Tags: { article.tags.map(tag => <TagView tag={ tag } />) }
     </div>

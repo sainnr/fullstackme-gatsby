@@ -218,7 +218,6 @@ img {
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  margin-bottom: 1.45rem;
 }
 h1 {
   margin-left: 0;
@@ -638,4 +637,7 @@ footer {
 }
 .tag-element {
   margin-right: 4px;
+}
+.article-author-pic {
+  width: 18px;
 }

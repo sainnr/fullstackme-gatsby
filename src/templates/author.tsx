@@ -1,9 +1,9 @@
 import React, { FC, Fragment } from 'react'
-import ReactMarkdown from 'react-markdown'
 import { Link, graphql } from 'gatsby'
 
 import { Layout, SEO } from '../components'
 import { IArticle, IAuthor } from 'types'
+import { WpContent } from '../components/wpContent'
 
 interface IQueryData {
   wordpressWpUsers: IAuthorArticles
@@ -18,8 +18,8 @@ const UserTemplate: FC<{ data: IQueryData }> = ({ data }) => <Layout>
   <h1>Articles by { data.wordpressWpUsers.name }</h1>
   { data.wordpressWpUsers.authored_wordpress__POST.map(article =>
     <Fragment key={ article.id }>
-      <h2><Link to={`/${ article.slug }`}>{ article.title }</Link></h2>
-      <ReactMarkdown source={ article.excerpt } />
+      <h2><Link to={`/articles/${ article.slug }`}>{ article.title }</Link></h2>
+      <WpContent htmlString={ article.excerpt } />
     </Fragment>) }
 </Layout>
 

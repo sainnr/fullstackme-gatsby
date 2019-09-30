@@ -1,9 +1,9 @@
 import React, { FC, Fragment } from 'react'
-import ReactMarkdown from 'react-markdown'
 import { Link, graphql } from 'gatsby'
 
 import { Layout, SEO } from '../components'
 import { IArticle, ITag } from 'types'
+import { WpContent } from '../components/wpContent'
 
 interface IQueryData {
   allWordpressPost: ITaggedArticles
@@ -19,8 +19,8 @@ const TagTemplate: FC<{ data: IQueryData }> = ({ data }) => <Layout>
   <h1>Articles tagged with "{ data.wordpressTag.name }"</h1>
   { data.allWordpressPost.nodes.map(article =>
     <Fragment key={ article.id }>
-      <h2><Link to={`/${ article.slug }`}>{ article.title }</Link></h2>
-      <ReactMarkdown source={ article.excerpt } />
+      <h2><Link to={`/articles/${ article.slug }`}>{ article.title }</Link></h2>
+      <WpContent htmlString={ article.excerpt } />
     </Fragment>) }
 </Layout>
 

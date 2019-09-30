@@ -1,10 +1,10 @@
 import React, { FC, Fragment } from 'react'
-import ReactMarkdown from 'react-markdown'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 
 import { Layout, SEO, PublishDate } from '../components'
 import { IArticle } from 'types'
+import { WpContent } from '../components/wpContent'
 
 interface IQueryData {
   allWordpressPost: { edges: Array<{ node: IArticle }> }
@@ -15,14 +15,14 @@ const IndexPage: FC<{ data: IQueryData }> = ({ data }) => <Layout>
   { data.allWordpressPost.edges.map(edge =>
     <Fragment key={ edge.node.id }>
       <h2>
-        <Link to={`/${ edge.node.slug }`}>{ edge.node.title }</Link>
+        <Link to={`/articles/${ edge.node.slug }`}>{ edge.node.title }</Link>
       </h2>
       <div className="flex-wrapper">
         <PublishDate dateString={ edge.node.date } />
       </div>
       <Img className="article-cover"
            fluid={ edge.node.featured_media.localFile.childImageSharp.fluid }/>
-      <ReactMarkdown source={ edge.node.excerpt }/>
+      <WpContent htmlString={ edge.node.excerpt } />
     </Fragment>
   ) }
 </Layout>
