@@ -2,10 +2,9 @@ import React, { FC } from 'react'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 
-import { Layout, SEO, PublishDate } from '../components'
+import { Layout, SEO, PublishDate, WpContent } from '../components'
 import { IArticle } from 'types'
 import { TagView } from '../components/tag'
-import { WpContent } from '../components/wpContent'
 
 interface IQueryData {
   wordpressPost: IArticle

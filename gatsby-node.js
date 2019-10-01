@@ -26,6 +26,7 @@ exports.createPages = ({ actions, graphql }) => {
       allWordpressPost {
         edges {
           node {
+            categories { name }
             slug
             author { name }
           }
@@ -35,7 +36,7 @@ exports.createPages = ({ actions, graphql }) => {
   `).then(result => 
     result.data.allWordpressPost.edges.forEach(({ node }) =>
       createPage({
-        path: `/articles/${ node.slug }`,
+        path: `/${ node.categories[0].name }/${ node.slug }`,
         component: path.resolve(`src/templates/article.tsx`),
         context: {
           slug: node.slug,

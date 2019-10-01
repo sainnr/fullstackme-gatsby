@@ -12,4 +12,5 @@ export interface IArticle {
   content: string
   slug: string
   tags: ITag[]
+  categories: Array<{ name: string }>
 }
