@@ -2,9 +2,8 @@ import React, { FC } from 'react'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 
-import { Layout, SEO, PublishDate, WpContent } from '../components'
-import { IArticle } from 'types'
-import { TagView } from '../components/tag'
+import { Layout, SEO, PublishDate, TagView, WpContent } from '../components'
+import { Article, IArticle } from '../types'
 
 interface IQueryData {
   wordpressPost: IArticle
@@ -20,7 +19,7 @@ const ArticleTemplate: FC<{ data: IQueryData }> = ({ data }) => {
       description={ article.excerpt }
       keywords={ article.keywords }
     />
-    <h1>{ article.title }</h1>
+    <h1>{ Article.withDecodedTitle(article).title }</h1>
     <div className="flex-wrapper">
       <div className="flex-left">
         By <img

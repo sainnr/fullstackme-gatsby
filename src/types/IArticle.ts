@@ -14,3 +14,14 @@ export interface IArticle {
   tags: ITag[]
   categories: Array<{ name: string }>
 }
+
+export class Article {
+
+  static decodeString = (input: string) => input
+    .replace("&#8211;", "–")
+
+  static withDecodedTitle = (article: IArticle): IArticle => ({
+    ...article,
+    title: Article.decodeString(article.title),
+  })
+}

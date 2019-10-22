@@ -2,7 +2,7 @@ import React, { FC, Fragment } from 'react'
 import { graphql } from 'gatsby'
 
 import { ArticleLink, Layout, SEO, WpContent } from '../components'
-import { IArticle, ITag } from 'types'
+import { Article, IArticle, ITag } from '../types'
 
 interface IQueryData {
   allWordpressPost: ITaggedArticles
@@ -18,7 +18,7 @@ const TagTemplate: FC<{ data: IQueryData }> = ({ data }) => <Layout>
   <h1>Articles tagged with "{ data.wordpressTag.name }"</h1>
   { data.allWordpressPost.nodes.map(article =>
     <Fragment key={ article.id }>
-      <h2><ArticleLink article={ article } /></h2>
+      <h2><ArticleLink article={ Article.withDecodedTitle(article) } /></h2>
       <WpContent htmlString={ article.excerpt } />
     </Fragment>) }
 </Layout>

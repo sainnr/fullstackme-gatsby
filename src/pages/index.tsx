@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
 import { Layout, SEO, PublishDate, WpContent, ArticleLink } from '../components'
-import { IArticle } from 'types'
+import { Article, IArticle } from '../types'
 
 interface IQueryData {
   allWordpressPost: { edges: Array<{ node: IArticle }> }
@@ -14,7 +14,7 @@ const IndexPage: FC<{ data: IQueryData }> = ({ data }) => <Layout>
   { data.allWordpressPost.edges.map(edge => {
     const article = edge.node
     return <Fragment key={ article.id }>
-      <h2><ArticleLink article={ article } /></h2>
+      <h2><ArticleLink article={ Article.withDecodedTitle(article) } /></h2>
       <div className="flex-wrapper">
         <PublishDate dateString={ article.date }/>
       </div>

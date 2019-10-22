@@ -2,7 +2,7 @@ import React, { FC, Fragment } from 'react'
 import { graphql } from 'gatsby'
 
 import { ArticleLink, Layout, SEO, WpContent } from '../components'
-import { IArticle, IAuthor } from 'types'
+import { Article, IArticle, IAuthor } from '../types'
 
 interface IQueryData {
   wordpressWpUsers: IAuthorArticles
@@ -19,7 +19,7 @@ const UserTemplate: FC<{ data: IQueryData }> = ({ data }) => {
     <h1>Articles by { user.name }</h1>
     { user.authored_wordpress__POST.map(article =>
       <Fragment key={ article.id }>
-        <h2><ArticleLink article={ article }/></h2>
+        <h2><ArticleLink article={ Article.withDecodedTitle(article) }/></h2>
         <WpContent htmlString={ article.excerpt }/>
       </Fragment>) }
   </Layout>
