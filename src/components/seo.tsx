@@ -66,6 +66,10 @@ export const SEO: FC<{
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `p:domain_verify`,
+          content: `2e0b6717b7412540c0bd352f0dcedcf5`,
+        }
       ].concat(meta)}
     />
   )
