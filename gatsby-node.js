@@ -45,6 +45,26 @@ exports.createPages = ({ actions, graphql }) => {
     )
   )
   
+  const getCategories = makeRequest(graphql, `
+    {
+      allWordpressCategory {
+        edges {
+          node { name }
+        }
+      }
+    }
+  `).then(result =>
+    result.data.allWordpressCategory.edges.forEach(({ node }) =>
+      createPage({
+        path: `/${ node.name }`,
+        component: path.resolve(`src/templates/category.tsx`),
+        context: {
+          category: node.name,
+        },
+      })
+    )
+  )
+
   const getAuthors = makeRequest(graphql, `
     {
       allWordpressWpUsers {
@@ -87,6 +107,7 @@ exports.createPages = ({ actions, graphql }) => {
 
   return Promise.all([
     getArticles,
+    getCategories,
     getAuthors,
     getTags,
   ])
