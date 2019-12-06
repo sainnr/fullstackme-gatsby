@@ -466,7 +466,6 @@ type Query {
   allSitePage(filter: SitePageFilterInput, limit: Int, skip: Int, sort: SitePageSortInput): SitePageConnection
   allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: SitePluginSortInput): SitePluginConnection
   allWordpressAcfCategories(filter: wordpress__acf_categoriesFilterInput, limit: Int, skip: Int, sort: wordpress__acf_categoriesSortInput): wordpress__acf_categoriesConnection
-  allWordpressAcfComments(filter: wordpress__acf_commentsFilterInput, limit: Int, skip: Int, sort: wordpress__acf_commentsSortInput): wordpress__acf_commentsConnection
   allWordpressAcfMedia(filter: wordpress__acf_mediaFilterInput, limit: Int, skip: Int, sort: wordpress__acf_mediaSortInput): wordpress__acf_mediaConnection
   allWordpressAcfOptions(filter: wordpress__acf_optionsFilterInput, limit: Int, skip: Int, sort: wordpress__acf_optionsSortInput): wordpress__acf_optionsConnection
   allWordpressAcfPages(filter: wordpress__acf_pagesFilterInput, limit: Int, skip: Int, sort: wordpress__acf_pagesSortInput): wordpress__acf_pagesConnection
@@ -477,7 +476,6 @@ type Query {
   allWordpressPost(filter: wordpress__POSTFilterInput, limit: Int, skip: Int, sort: wordpress__POSTSortInput): wordpress__POSTConnection
   allWordpressSiteMetadata(filter: wordpress__site_metadataFilterInput, limit: Int, skip: Int, sort: wordpress__site_metadataSortInput): wordpress__site_metadataConnection
   allWordpressTag(filter: wordpress__TAGFilterInput, limit: Int, skip: Int, sort: wordpress__TAGSortInput): wordpress__TAGConnection
-  allWordpressWpComments(filter: wordpress__wp_commentsFilterInput, limit: Int, skip: Int, sort: wordpress__wp_commentsSortInput): wordpress__wp_commentsConnection
   allWordpressWpMedia(filter: wordpress__wp_mediaFilterInput, limit: Int, skip: Int, sort: wordpress__wp_mediaSortInput): wordpress__wp_mediaConnection
   allWordpressWpSearch(filter: wordpress__wp_searchFilterInput, limit: Int, skip: Int, sort: wordpress__wp_searchSortInput): wordpress__wp_searchConnection
   allWordpressWpStatuses(filter: wordpress__wp_statusesFilterInput, limit: Int, skip: Int, sort: wordpress__wp_statusesSortInput): wordpress__wp_statusesConnection
@@ -488,21 +486,19 @@ type Query {
   file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: IntQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput, url: StringQueryOperatorInput): File
   imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput, resolutions: ImageSharpResolutionsFilterInput, sizes: ImageSharpSizesFilterInput): ImageSharp
   site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
-  sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
+  sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, context: SitePageContextFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
   sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
   wordpressAcfCategories(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, wordpress_id: IntQueryOperatorInput): wordpress__acf_categories
-  wordpressAcfComments(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, wordpress_id: IntQueryOperatorInput): wordpress__acf_comments
   wordpressAcfMedia(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, wordpress_id: IntQueryOperatorInput): wordpress__acf_media
   wordpressAcfOptions(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, wordpress_id: StringQueryOperatorInput): wordpress__acf_options
   wordpressAcfPages(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, wordpress_id: IntQueryOperatorInput): wordpress__acf_pages
-  wordpressAcfPosts(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, wordpress_id: IntQueryOperatorInput): wordpress__acf_posts
+  wordpressAcfPosts(acf: wordpress__acf_postsAcfFilterInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, wordpress_id: IntQueryOperatorInput): wordpress__acf_posts
   wordpressAcfUsers(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, wordpress_id: IntQueryOperatorInput): wordpress__acf_users
   wordpressCategory(_links: wordpress__CATEGORY_linksFilterInput, children: NodeFilterListInput, count: IntQueryOperatorInput, description: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, link: StringQueryOperatorInput, name: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, slug: StringQueryOperatorInput, taxonomy: wordpress__wp_taxonomiesFilterInput, wordpress_id: IntQueryOperatorInput, wordpress_parent: IntQueryOperatorInput): wordpress__CATEGORY
   wordpressPage(_links: wordpress__PAGE_linksFilterInput, author: wordpress__wp_usersFilterInput, children: NodeFilterListInput, comment_status: StringQueryOperatorInput, content: StringQueryOperatorInput, date: DateQueryOperatorInput, excerpt: StringQueryOperatorInput, guid: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, link: StringQueryOperatorInput, menu_order: IntQueryOperatorInput, modified: DateQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, ping_status: StringQueryOperatorInput, slug: StringQueryOperatorInput, status: StringQueryOperatorInput, template: StringQueryOperatorInput, title: StringQueryOperatorInput, type: StringQueryOperatorInput, wordpress_id: IntQueryOperatorInput, wordpress_parent: IntQueryOperatorInput): wordpress__PAGE
-  wordpressPost(_links: wordpress__POST_linksFilterInput, author: wordpress__wp_usersFilterInput, categories: wordpress__CATEGORYFilterListInput, children: NodeFilterListInput, comment_status: StringQueryOperatorInput, content: StringQueryOperatorInput, date: DateQueryOperatorInput, excerpt: StringQueryOperatorInput, featured_media: wordpress__wp_mediaFilterInput, format: StringQueryOperatorInput, guid: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, link: StringQueryOperatorInput, modified: DateQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, ping_status: StringQueryOperatorInput, slug: StringQueryOperatorInput, status: StringQueryOperatorInput, sticky: BooleanQueryOperatorInput, tags: wordpress__TAGFilterListInput, template: StringQueryOperatorInput, title: StringQueryOperatorInput, type: StringQueryOperatorInput, wordpress_id: IntQueryOperatorInput): wordpress__POST
+  wordpressPost(_links: wordpress__POST_linksFilterInput, acf: wordpress__POSTAcfFilterInput, author: wordpress__wp_usersFilterInput, categories: wordpress__CATEGORYFilterListInput, children: NodeFilterListInput, comment_status: StringQueryOperatorInput, content: StringQueryOperatorInput, date: DateQueryOperatorInput, excerpt: StringQueryOperatorInput, featured_media: wordpress__wp_mediaFilterInput, format: StringQueryOperatorInput, guid: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, link: StringQueryOperatorInput, modified: DateQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, ping_status: StringQueryOperatorInput, slug: StringQueryOperatorInput, status: StringQueryOperatorInput, sticky: BooleanQueryOperatorInput, tags: wordpress__TAGFilterListInput, template: StringQueryOperatorInput, title: StringQueryOperatorInput, type: StringQueryOperatorInput, wordpress_id: IntQueryOperatorInput): wordpress__POST
   wordpressSiteMetadata(children: NodeFilterListInput, description: StringQueryOperatorInput, home: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, parent: NodeFilterInput, url: StringQueryOperatorInput): wordpress__site_metadata
   wordpressTag(_links: wordpress__TAG_linksFilterInput, children: NodeFilterListInput, count: IntQueryOperatorInput, description: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, link: StringQueryOperatorInput, name: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, slug: StringQueryOperatorInput, taxonomy: wordpress__wp_taxonomiesFilterInput, wordpress_id: IntQueryOperatorInput): wordpress__TAG
-  wordpressWpComments(_links: wordpress__wp_comments_linksFilterInput, author: IntQueryOperatorInput, author_avatar_urls: wordpress__wp_commentsAuthor_avatar_urlsFilterInput, author_name: StringQueryOperatorInput, author_url: StringQueryOperatorInput, children: NodeFilterListInput, content: StringQueryOperatorInput, date: DateQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, link: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, post: IntQueryOperatorInput, status: StringQueryOperatorInput, type: StringQueryOperatorInput, wordpress_id: IntQueryOperatorInput, wordpress_parent: IntQueryOperatorInput): wordpress__wp_comments
   wordpressWpMedia(_links: wordpress__wp_media_linksFilterInput, alt_text: StringQueryOperatorInput, author: wordpress__wp_usersFilterInput, caption: StringQueryOperatorInput, children: NodeFilterListInput, comment_status: StringQueryOperatorInput, date: DateQueryOperatorInput, description: StringQueryOperatorInput, guid: wordpress__wp_mediaFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, link: StringQueryOperatorInput, localFile: FileFilterInput, media_details: wordpress__wp_mediaMedia_detailsFilterInput, media_type: StringQueryOperatorInput, mime_type: StringQueryOperatorInput, modified: DateQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, ping_status: StringQueryOperatorInput, post: IntQueryOperatorInput, slug: StringQueryOperatorInput, source_url: StringQueryOperatorInput, status: StringQueryOperatorInput, template: StringQueryOperatorInput, title: StringQueryOperatorInput, type: StringQueryOperatorInput, wordpress_id: IntQueryOperatorInput): wordpress__wp_media
   wordpressWpSearch(_links: wordpress__wp_search_linksFilterInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, subtype: StringQueryOperatorInput, title: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput, wordpress_id: IntQueryOperatorInput): wordpress__wp_search
   wordpressWpStatuses(_links: wordpress__wp_statuses_linksFilterInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, parent: NodeFilterInput, public: BooleanQueryOperatorInput, queryable: BooleanQueryOperatorInput, slug: StringQueryOperatorInput, wordpress_id: StringQueryOperatorInput): wordpress__wp_statuses
@@ -562,6 +558,7 @@ type SitePage implements Node {
   component: String
   componentChunkName: String
   componentPath: String
+  context: SitePageContext
   id: ID!
   internal: Internal!
   internalComponentName: String
@@ -579,6 +576,13 @@ type SitePageConnection {
   nodes: [SitePage!]!
   pageInfo: PageInfo!
   totalCount: Int!
+}
+
+type SitePageContext {
+  category: String
+  slug: String
+  tag: String
+  username: String
 }
 
 type SitePageEdge {
@@ -664,9 +668,7 @@ type SitePluginPackageJsonPeerDependencies {
 }
 
 type SitePluginPluginOptions {
-  apiURL: String
   baseUrl: String
-  contentTypes: [String]
   display: String
   google: SitePluginPluginOptionsGoogle
   hostingWPCOM: Boolean
@@ -675,7 +677,6 @@ type SitePluginPluginOptions {
   path: String
   pathCheck: Boolean
   protocol: String
-  queryLimit: Int
   short_name: String
   start_url: String
   trackingId: String
@@ -881,6 +882,7 @@ type wordpress__PAGE_linksWp_attachment {
 
 type wordpress__POST implements Node {
   _links: wordpress__POST_links
+  acf: wordpress__POSTAcf
   author: wordpress__wp_users
   categories: [wordpress__CATEGORY]
   children: [Node!]!
@@ -924,6 +926,11 @@ type wordpress__POST implements Node {
   title: String
   type: String
   wordpress_id: Int
+}
+
+type wordpress__POSTAcf {
+  seo_description: String
+  seo_keywords: String
 }
 
 type wordpress__POSTConnection {
@@ -1119,38 +1126,6 @@ type wordpress__acf_categoriesGroupConnection {
   totalCount: Int!
 }
 
-type wordpress__acf_comments implements Node {
-  children: [Node!]!
-  id: ID!
-  internal: Internal!
-  parent: Node
-  wordpress_id: Int
-}
-
-type wordpress__acf_commentsConnection {
-  distinct(field: wordpress__acf_commentsFieldsEnum!): [String!]!
-  edges: [wordpress__acf_commentsEdge!]!
-  group(field: wordpress__acf_commentsFieldsEnum!, limit: Int, skip: Int): [wordpress__acf_commentsGroupConnection!]!
-  nodes: [wordpress__acf_comments!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type wordpress__acf_commentsEdge {
-  next: wordpress__acf_comments
-  node: wordpress__acf_comments!
-  previous: wordpress__acf_comments
-}
-
-type wordpress__acf_commentsGroupConnection {
-  edges: [wordpress__acf_commentsEdge!]!
-  field: String!
-  fieldValue: String
-  nodes: [wordpress__acf_comments!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
 type wordpress__acf_media implements Node {
   children: [Node!]!
   id: ID!
@@ -1248,11 +1223,17 @@ type wordpress__acf_pagesGroupConnection {
 }
 
 type wordpress__acf_posts implements Node {
+  acf: wordpress__acf_postsAcf
   children: [Node!]!
   id: ID!
   internal: Internal!
   parent: Node
   wordpress_id: Int
+}
+
+type wordpress__acf_postsAcf {
+  seo_description: String
+  seo_keywords: String
 }
 
 type wordpress__acf_postsConnection {
@@ -1344,86 +1325,6 @@ type wordpress__site_metadataGroupConnection {
   nodes: [wordpress__site_metadata!]!
   pageInfo: PageInfo!
   totalCount: Int!
-}
-
-type wordpress__wp_comments implements Node {
-  _links: wordpress__wp_comments_links
-  author: Int
-  author_avatar_urls: wordpress__wp_commentsAuthor_avatar_urls
-  author_name: String
-  author_url: String
-  children: [Node!]!
-  content: String
-  date(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
-    difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
-    fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
-    locale: String
-  ): Date
-  id: ID!
-  internal: Internal!
-  link: String
-  parent: Node
-  path: String
-  post: Int
-  status: String
-  type: String
-  wordpress_id: Int
-  wordpress_parent: Int
-}
-
-type wordpress__wp_commentsAuthor_avatar_urls {
-  wordpress_24: String
-  wordpress_48: String
-  wordpress_96: String
-}
-
-type wordpress__wp_commentsConnection {
-  distinct(field: wordpress__wp_commentsFieldsEnum!): [String!]!
-  edges: [wordpress__wp_commentsEdge!]!
-  group(field: wordpress__wp_commentsFieldsEnum!, limit: Int, skip: Int): [wordpress__wp_commentsGroupConnection!]!
-  nodes: [wordpress__wp_comments!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type wordpress__wp_commentsEdge {
-  next: wordpress__wp_comments
-  node: wordpress__wp_comments!
-  previous: wordpress__wp_comments
-}
-
-type wordpress__wp_commentsGroupConnection {
-  edges: [wordpress__wp_commentsEdge!]!
-  field: String!
-  fieldValue: String
-  nodes: [wordpress__wp_comments!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type wordpress__wp_comments_links {
-  collection: [wordpress__wp_comments_linksCollection]
-  self: [wordpress__wp_comments_linksSelf]
-  up: [wordpress__wp_comments_linksUp]
-}
-
-type wordpress__wp_comments_linksCollection {
-  href: String
-}
-
-type wordpress__wp_comments_linksSelf {
-  href: String
-}
-
-type wordpress__wp_comments_linksUp {
-  embeddable: Boolean
-  href: String
-  post_type: String
 }
 
 type wordpress__wp_media implements Node {
@@ -2396,6 +2297,10 @@ enum SitePageFieldsEnum {
   component
   componentChunkName
   componentPath
+  context___category
+  context___slug
+  context___tag
+  context___username
   id
   internalComponentName
   internal___content
@@ -2504,9 +2409,7 @@ enum SitePageFieldsEnum {
   pluginCreator___parent___parent___children
   pluginCreator___parent___parent___id
   pluginCreator___pluginFilepath
-  pluginCreator___pluginOptions___apiURL
   pluginCreator___pluginOptions___baseUrl
-  pluginCreator___pluginOptions___contentTypes
   pluginCreator___pluginOptions___display
   pluginCreator___pluginOptions___google___families
   pluginCreator___pluginOptions___hostingWPCOM
@@ -2515,7 +2418,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___path
   pluginCreator___pluginOptions___pathCheck
   pluginCreator___pluginOptions___protocol
-  pluginCreator___pluginOptions___queryLimit
   pluginCreator___pluginOptions___short_name
   pluginCreator___pluginOptions___start_url
   pluginCreator___pluginOptions___trackingId
@@ -2631,9 +2533,7 @@ enum SitePluginFieldsEnum {
   parent___parent___parent___children
   parent___parent___parent___id
   pluginFilepath
-  pluginOptions___apiURL
   pluginOptions___baseUrl
-  pluginOptions___contentTypes
   pluginOptions___display
   pluginOptions___google___families
   pluginOptions___hostingWPCOM
@@ -2642,7 +2542,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___path
   pluginOptions___pathCheck
   pluginOptions___protocol
-  pluginOptions___queryLimit
   pluginOptions___short_name
   pluginOptions___start_url
   pluginOptions___trackingId
@@ -2909,6 +2808,8 @@ enum wordpress__PAGEFieldsEnum {
   author___authored_wordpress__POST____links___wp_attachment
   author___authored_wordpress__POST____links___wp_featuredmedia
   author___authored_wordpress__POST____links___wp_term
+  author___authored_wordpress__POST___acf___seo_description
+  author___authored_wordpress__POST___acf___seo_keywords
   author___authored_wordpress__POST___author___authored_wordpress__PAGE
   author___authored_wordpress__POST___author___authored_wordpress__POST
   author___authored_wordpress__POST___author___authored_wordpress__wp_media
@@ -3291,6 +3192,8 @@ enum wordpress__POSTFieldsEnum {
   _links___wp_term___embeddable
   _links___wp_term___href
   _links___wp_term___taxonomy
+  acf___seo_description
+  acf___seo_keywords
   author____links___collection
   author____links___collection___href
   author____links___self
@@ -3359,6 +3262,8 @@ enum wordpress__POSTFieldsEnum {
   author___authored_wordpress__POST____links___wp_attachment
   author___authored_wordpress__POST____links___wp_featuredmedia
   author___authored_wordpress__POST____links___wp_term
+  author___authored_wordpress__POST___acf___seo_description
+  author___authored_wordpress__POST___acf___seo_keywords
   author___authored_wordpress__POST___author___authored_wordpress__PAGE
   author___authored_wordpress__POST___author___authored_wordpress__POST
   author___authored_wordpress__POST___author___authored_wordpress__wp_media
@@ -4458,96 +4363,6 @@ enum wordpress__acf_categoriesFieldsEnum {
   wordpress_id
 }
 
-enum wordpress__acf_commentsFieldsEnum {
-  children
-  children___children
-  children___children___children
-  children___children___children___children
-  children___children___children___id
-  children___children___id
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___children___parent___children
-  children___children___parent___id
-  children___id
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  children___parent___children
-  children___parent___children___children
-  children___parent___children___id
-  children___parent___id
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___parent___parent___children
-  children___parent___parent___id
-  id
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  parent___children
-  parent___children___children
-  parent___children___children___children
-  parent___children___children___id
-  parent___children___id
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___children___parent___children
-  parent___children___parent___id
-  parent___id
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  parent___parent___children
-  parent___parent___children___children
-  parent___parent___children___id
-  parent___parent___id
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___parent___parent___children
-  parent___parent___parent___id
-  wordpress_id
-}
-
 enum wordpress__acf_mediaFieldsEnum {
   children
   children___children
@@ -4819,6 +4634,8 @@ enum wordpress__acf_pagesFieldsEnum {
 }
 
 enum wordpress__acf_postsFieldsEnum {
+  acf___seo_description
+  acf___seo_keywords
   children
   children___children
   children___children___children
@@ -5091,118 +4908,6 @@ enum wordpress__site_metadataFieldsEnum {
   url
 }
 
-enum wordpress__wp_commentsFieldsEnum {
-  _links___collection
-  _links___collection___href
-  _links___self
-  _links___self___href
-  _links___up
-  _links___up___embeddable
-  _links___up___href
-  _links___up___post_type
-  author
-  author_avatar_urls___wordpress_24
-  author_avatar_urls___wordpress_48
-  author_avatar_urls___wordpress_96
-  author_name
-  author_url
-  children
-  children___children
-  children___children___children
-  children___children___children___children
-  children___children___children___id
-  children___children___id
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___children___parent___children
-  children___children___parent___id
-  children___id
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  children___parent___children
-  children___parent___children___children
-  children___parent___children___id
-  children___parent___id
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___parent___parent___children
-  children___parent___parent___id
-  content
-  date
-  id
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  link
-  parent___children
-  parent___children___children
-  parent___children___children___children
-  parent___children___children___id
-  parent___children___id
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___children___parent___children
-  parent___children___parent___id
-  parent___id
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  parent___parent___children
-  parent___parent___children___children
-  parent___parent___children___id
-  parent___parent___id
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___parent___parent___children
-  parent___parent___parent___id
-  path
-  post
-  status
-  type
-  wordpress_id
-  wordpress_parent
-}
-
 enum wordpress__wp_mediaFieldsEnum {
   _links___about
   _links___about___href
@@ -5285,6 +4990,8 @@ enum wordpress__wp_mediaFieldsEnum {
   author___authored_wordpress__POST____links___wp_attachment
   author___authored_wordpress__POST____links___wp_featuredmedia
   author___authored_wordpress__POST____links___wp_term
+  author___authored_wordpress__POST___acf___seo_description
+  author___authored_wordpress__POST___acf___seo_keywords
   author___authored_wordpress__POST___author___authored_wordpress__PAGE
   author___authored_wordpress__POST___author___authored_wordpress__POST
   author___authored_wordpress__POST___author___authored_wordpress__wp_media
@@ -6665,6 +6372,8 @@ enum wordpress__wp_usersFieldsEnum {
   authored_wordpress__POST____links___wp_term___embeddable
   authored_wordpress__POST____links___wp_term___href
   authored_wordpress__POST____links___wp_term___taxonomy
+  authored_wordpress__POST___acf___seo_description
+  authored_wordpress__POST___acf___seo_keywords
   authored_wordpress__POST___author____links___collection
   authored_wordpress__POST___author____links___self
   authored_wordpress__POST___author___authored_wordpress__PAGE
@@ -7700,11 +7409,19 @@ input SiteFilterInput {
   siteMetadata: SiteSiteMetadataFilterInput
 }
 
+input SitePageContextFilterInput {
+  category: StringQueryOperatorInput
+  slug: StringQueryOperatorInput
+  tag: StringQueryOperatorInput
+  username: StringQueryOperatorInput
+}
+
 input SitePageFilterInput {
   children: NodeFilterListInput
   component: StringQueryOperatorInput
   componentChunkName: StringQueryOperatorInput
   componentPath: StringQueryOperatorInput
+  context: SitePageContextFilterInput
   id: StringQueryOperatorInput
   internal: InternalFilterInput
   internalComponentName: StringQueryOperatorInput
@@ -7776,9 +7493,7 @@ input SitePluginPackageJsonPeerDependenciesFilterListInput {
 }
 
 input SitePluginPluginOptionsFilterInput {
-  apiURL: StringQueryOperatorInput
   baseUrl: StringQueryOperatorInput
-  contentTypes: StringQueryOperatorInput
   display: StringQueryOperatorInput
   google: SitePluginPluginOptionsGoogleFilterInput
   hostingWPCOM: BooleanQueryOperatorInput
@@ -7787,7 +7502,6 @@ input SitePluginPluginOptionsFilterInput {
   path: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
   protocol: StringQueryOperatorInput
-  queryLimit: IntQueryOperatorInput
   short_name: StringQueryOperatorInput
   start_url: StringQueryOperatorInput
   trackingId: StringQueryOperatorInput
@@ -8014,8 +7728,14 @@ input wordpress__PAGE_linksWp_attachmentFilterListInput {
   elemMatch: wordpress__PAGE_linksWp_attachmentFilterInput
 }
 
+input wordpress__POSTAcfFilterInput {
+  seo_description: StringQueryOperatorInput
+  seo_keywords: StringQueryOperatorInput
+}
+
 input wordpress__POSTFilterInput {
   _links: wordpress__POST_linksFilterInput
+  acf: wordpress__POSTAcfFilterInput
   author: wordpress__wp_usersFilterInput
   categories: wordpress__CATEGORYFilterListInput
   children: NodeFilterListInput
@@ -8251,19 +7971,6 @@ input wordpress__acf_categoriesSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
-input wordpress__acf_commentsFilterInput {
-  children: NodeFilterListInput
-  id: StringQueryOperatorInput
-  internal: InternalFilterInput
-  parent: NodeFilterInput
-  wordpress_id: IntQueryOperatorInput
-}
-
-input wordpress__acf_commentsSortInput {
-  fields: [wordpress__acf_commentsFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
-}
-
 input wordpress__acf_mediaFilterInput {
   children: NodeFilterListInput
   id: StringQueryOperatorInput
@@ -8303,7 +8010,13 @@ input wordpress__acf_pagesSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
+input wordpress__acf_postsAcfFilterInput {
+  seo_description: StringQueryOperatorInput
+  seo_keywords: StringQueryOperatorInput
+}
+
 input wordpress__acf_postsFilterInput {
+  acf: wordpress__acf_postsAcfFilterInput
   children: NodeFilterListInput
   id: StringQueryOperatorInput
   internal: InternalFilterInput
@@ -8343,70 +8056,6 @@ input wordpress__site_metadataFilterInput {
 input wordpress__site_metadataSortInput {
   fields: [wordpress__site_metadataFieldsEnum]
   order: [SortOrderEnum] = [ASC]
-}
-
-input wordpress__wp_commentsAuthor_avatar_urlsFilterInput {
-  wordpress_24: StringQueryOperatorInput
-  wordpress_48: StringQueryOperatorInput
-  wordpress_96: StringQueryOperatorInput
-}
-
-input wordpress__wp_commentsFilterInput {
-  _links: wordpress__wp_comments_linksFilterInput
-  author: IntQueryOperatorInput
-  author_avatar_urls: wordpress__wp_commentsAuthor_avatar_urlsFilterInput
-  author_name: StringQueryOperatorInput
-  author_url: StringQueryOperatorInput
-  children: NodeFilterListInput
-  content: StringQueryOperatorInput
-  date: DateQueryOperatorInput
-  id: StringQueryOperatorInput
-  internal: InternalFilterInput
-  link: StringQueryOperatorInput
-  parent: NodeFilterInput
-  path: StringQueryOperatorInput
-  post: IntQueryOperatorInput
-  status: StringQueryOperatorInput
-  type: StringQueryOperatorInput
-  wordpress_id: IntQueryOperatorInput
-  wordpress_parent: IntQueryOperatorInput
-}
-
-input wordpress__wp_commentsSortInput {
-  fields: [wordpress__wp_commentsFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
-}
-
-input wordpress__wp_comments_linksCollectionFilterInput {
-  href: StringQueryOperatorInput
-}
-
-input wordpress__wp_comments_linksCollectionFilterListInput {
-  elemMatch: wordpress__wp_comments_linksCollectionFilterInput
-}
-
-input wordpress__wp_comments_linksFilterInput {
-  collection: wordpress__wp_comments_linksCollectionFilterListInput
-  self: wordpress__wp_comments_linksSelfFilterListInput
-  up: wordpress__wp_comments_linksUpFilterListInput
-}
-
-input wordpress__wp_comments_linksSelfFilterInput {
-  href: StringQueryOperatorInput
-}
-
-input wordpress__wp_comments_linksSelfFilterListInput {
-  elemMatch: wordpress__wp_comments_linksSelfFilterInput
-}
-
-input wordpress__wp_comments_linksUpFilterInput {
-  embeddable: BooleanQueryOperatorInput
-  href: StringQueryOperatorInput
-  post_type: StringQueryOperatorInput
-}
-
-input wordpress__wp_comments_linksUpFilterListInput {
-  elemMatch: wordpress__wp_comments_linksUpFilterInput
 }
 
 input wordpress__wp_mediaFilterInput {

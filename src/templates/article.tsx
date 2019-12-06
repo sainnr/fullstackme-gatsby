@@ -16,8 +16,8 @@ const ArticleTemplate: FC<{ data: IQueryData }> = ({ data }) => {
   return <Layout>
     <SEO
       title={ article.title }
-      description={ article.excerpt }
-      keywords={ article.keywords }
+      description={ article.acf.seo_description }
+      keywords={ article.acf.seo_keywords }
     />
     <h1>{ Article.withDecodedTitle(article).title }</h1>
     <div className="flex-wrapper">
@@ -38,7 +38,7 @@ const ArticleTemplate: FC<{ data: IQueryData }> = ({ data }) => {
          fluid={ article.featured_media.localFile.childImageSharp.fluid } />
     <WpContent htmlString={ article.content } />
     <div className="article-tags" >
-      Tags: { article.tags.map(tag => <TagView tag={ tag } />) }
+      Tags: { article.tags.map(tag => <TagView key={tag.name} tag={ tag } />) }
     </div>
     ← <Link to="/">Back to other articles</Link>
   </Layout>
@@ -61,7 +61,10 @@ export const query = graphql`
           }
         }
       }
-#      keywords
+      acf {
+        seo_keywords
+        seo_description
+      }
       date
       author {
         name

@@ -15,7 +15,13 @@ interface IAuthorArticles extends IAuthor {
 const UserTemplate: FC<{ data: IQueryData }> = ({ data }) => {
   const user = data.wordpressWpUsers
   return <Layout>
-    <SEO title={ user.name }/>
+    <SEO
+      title={ user.name }
+      keywords={ `${user.name}, journal, blog, articles, posts, development,
+       web technology, sports, running` }
+      description={ `Articles by ${user.name} about sports, running,
+       web technology and software development` }
+    />
     <h1>Articles by { user.name }</h1>
     { user.authored_wordpress__POST.map(article =>
       <Fragment key={ article.id }>

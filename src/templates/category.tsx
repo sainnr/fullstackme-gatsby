@@ -13,15 +13,22 @@ interface IArticles {
   nodes: Array<IArticle>
 }
 
-const CategoryTemplate: FC<{ data: IQueryData }> = ({ data }) => <Layout>
-  <SEO title={ data.wordpressCategory.name } />
-  <h1>Full stack { data.wordpressCategory.name }</h1>
-  { data.allWordpressPost.nodes.map(article =>
-    <Fragment key={ article.id }>
-      <h2><ArticleLink article={ Article.withDecodedTitle(article) } /></h2>
-      <WpContent htmlString={ article.excerpt } />
-    </Fragment>) }
-</Layout>
+const CategoryTemplate: FC<{ data: IQueryData }> = ({ data }) => {
+  const category = data.wordpressCategory.name
+  return <Layout>
+    <SEO
+      title={`Learn about ${category}`}
+      keywords={`full stack, learning about ${category}`}
+      description={`Go full stack, learn more about ${category}`}
+    />
+    <h1>Full stack {category}</h1>
+    {data.allWordpressPost.nodes.map(article =>
+      <Fragment key={article.id}>
+        <h2><ArticleLink article={Article.withDecodedTitle(article)}/></h2>
+        <WpContent htmlString={article.excerpt}/>
+      </Fragment>)}
+  </Layout>
+}
 
 export default CategoryTemplate
 

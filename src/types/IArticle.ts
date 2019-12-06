@@ -5,7 +5,7 @@ export interface IArticle {
   id: string
   title: string
   excerpt: string
-  keywords: string
+  acf: { seo_keywords: string, seo_description: string }
   author: IAuthor
   featured_media: any
   date: string

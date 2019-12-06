@@ -13,15 +13,22 @@ interface ITaggedArticles extends ITag {
   nodes: Array<IArticle>
 }
 
-const TagTemplate: FC<{ data: IQueryData }> = ({ data }) => <Layout>
-  <SEO title={ data.wordpressTag.name } />
-  <h1>Articles tagged with "{ data.wordpressTag.name }"</h1>
-  { data.allWordpressPost.nodes.map(article =>
-    <Fragment key={ article.id }>
-      <h2><ArticleLink article={ Article.withDecodedTitle(article) } /></h2>
-      <WpContent htmlString={ article.excerpt } />
-    </Fragment>) }
-</Layout>
+const TagTemplate: FC<{ data: IQueryData }> = ({ data }) => {
+  const tag = data.wordpressTag.name
+  return <Layout>
+    <SEO
+      title={`More of ${tag}`}
+      keywords={`full stack, learning ${tag}`}
+      description={`Go full stack, learn more about ${tag}`}
+    />
+    <h1>Articles tagged with "{data.wordpressTag.name}"</h1>
+    {data.allWordpressPost.nodes.map(article =>
+      <Fragment key={article.id}>
+        <h2><ArticleLink article={Article.withDecodedTitle(article)}/></h2>
+        <WpContent htmlString={article.excerpt}/>
+      </Fragment>)}
+  </Layout>
+}
 
 export default TagTemplate
 
