@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: fullstackme.co.uk
+Token: e16e223137a768d7af38e2fdcb749a31293e9d62748300f9955064a49e814eb0
