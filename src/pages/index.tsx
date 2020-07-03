@@ -14,10 +14,10 @@ const IndexPage: FC<{ data: IQueryData }> = ({ data }) => <Layout>
   { data.allWordpressPost.edges.map(edge => {
     const article = edge.node
     return <Fragment key={ article.id }>
-      <h2><ArticleLink article={ Article.withDecodedTitle(article) } /></h2>
-      <div className="flex-wrapper">
-        <PublishDate dateString={ article.date }/>
+      <div style={{marginLeft: '-200px', marginBottom: '-70px', marginTop: '50px'}}>
+        <div style={{textAlign: 'right', width: '180px', fontStyle: 'Italic'}}><PublishDate dateString={ article.date }/></div>
       </div>
+      <h2><ArticleLink article={ Article.withDecodedTitle(article) } /></h2>
       <Img className="article-cover"
            fluid={ article.featured_media.localFile.childImageSharp.fluid }/>
       <WpContent htmlString={ article.excerpt }/>

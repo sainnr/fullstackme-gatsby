@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `FullStack Me`,
-    description: `Curiosity driven journal of perfecting a comprehensive and mindful living`,
+    title: `Full Stack Me`,
+    description: `Remarks on developing a versatile living.`,
     author: `@sainnr`,
   },
   plugins: [
@@ -44,7 +44,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['Caveat Brush']
+          families: ['Caveat Brush', 'Patua One']
         }
       }
     },

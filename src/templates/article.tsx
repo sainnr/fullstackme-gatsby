@@ -19,27 +19,27 @@ const ArticleTemplate: FC<{ data: IQueryData }> = ({ data }) => {
       description={ article.acf.seo_description }
       keywords={ article.acf.seo_keywords }
     />
-    <h1>{ Article.withDecodedTitle(article).title }</h1>
-    <div className="flex-wrapper">
-      <div className="flex-left">
-        By <img
-          className="article-author-pic"
-          alt="Vladimir Salin"
-          src={ author.avatar_urls.wordpress_96 }
-        /> <Link to={`/authors/${ author.slug }`}>
-          { author.name }
-        </Link>
-      </div>
-      <div className="flex-right">
-        <PublishDate dateString={ article.date } />
-      </div>
+    <div style={{textAlign: 'center'}}>
+      <h1>{ Article.withDecodedTitle(article).title }</h1>
+        <div style={{display: 'flex', justifyContent: 'center', color: 'grey'}}>
+          <div style={{}}>
+            By <Link to={`/authors/${ author.slug }`}>
+              { author.name }
+            </Link>
+          </div>&nbsp;|&nbsp;
+          <div>
+            <PublishDate dateString={ article.date } />
+          </div>
+        </div>
     </div>
     <Img className="article-cover"
          fluid={ article.featured_media.localFile.childImageSharp.fluid } />
     <WpContent htmlString={ article.content } />
     <div className="article-tags" >
-      Tags: { article.tags.map(tag => <TagView key={tag.name} tag={ tag } />) }
+      <span style={{fontFamily: 'Patua One', fontSize: '1.1em'}}>Tags: </span>
+      { article.tags.map(tag => <TagView key={tag.name} tag={ tag } />) }
     </div>
+    <br />
     ← <Link to="/">Back to other articles</Link>
   </Layout>
 }

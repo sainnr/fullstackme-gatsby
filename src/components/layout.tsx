@@ -28,7 +28,7 @@ export const Layout: FC = ({ children }) => (
           paddingTop: 0,
         }}>
           <main>{ children }</main>
-          <footer>© {new Date().getFullYear()}, FullStack Me Project</footer>
+          <footer style={{textAlign: 'center', color: 'grey'}}>©{new Date().getFullYear()}, Full Stack Me Project</footer>
         </div>
       </>
     )}
