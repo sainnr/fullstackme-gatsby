@@ -30,6 +30,7 @@ export const Layout: FC = ({ children }) => (
           <main>{ children }</main>
           <footer style={{textAlign: 'center', color: 'grey'}}>©{new Date().getFullYear()}, Full Stack Me Project</footer>
         </div>
+        <script type="text/javascript" src="https://s.skimresources.com/js/187687X1658364.skimlinks.js"></script>
       </>
     )}
   />
