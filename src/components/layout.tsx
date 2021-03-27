@@ -31,6 +31,17 @@ export const Layout: FC = ({ children }) => (
           <footer style={{textAlign: 'center', color: 'grey'}}>©{new Date().getFullYear()}, Full Stack Me Project</footer>
         </div>
         <script type="text/javascript" src="https://s.skimresources.com/js/187687X1658364.skimlinks.js"></script>
+        <script type="text/javascript" dangerouslySetInnerHTML={ { __html: "            var vglnk = {key: '4231e428be4450bc5ee4f7ed544fe912'};"+
+"            (function(d, t) { " +
+"                var s = d.createElement(t);"+ 
+"                   s.type = 'text/javascript';"+
+"                    s.async = true;"+
+"                    s.src = '//cdn.viglink.com/api/vglnk.js';"+
+"                var r = d.getElementsByTagName(t)[0];"+
+"                    r.parentNode.insertBefore(s, r);"+
+"            }(document, 'script'));"
+ } }>
+        </script>
       </>
     )}
   />
